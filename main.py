@@ -32,11 +32,12 @@ class Calculatrice(object):
 		self.LabelDel.pack(expand=1,fill="both",ipady=20)
 		
 		buttons = (("7",0,0),("8",0,1),("9",0,2),("*",0,3),
-					("4",1,0),("5",1,1),("6",1,2),("+",1,3),
-					("0",2,0),(".",2,1),("/",2,2),("=",2,3),
+					("4",1,0),("5",1,1),("6",1,2),("-",1,3),
+					("1",2,0),("2",2,1),("3",2,2),("+",2,3),
+					("0",3,0),(".",3,1),("/",3,2),("=",3,3),
 		)
 		for elt in buttons:
-			Label(self.FrameCalcul,text = elt[0],fg="#FFFFFF",bg=self.FrameCalcul["bg"],font=('Georgia',14,'bold')).grid(sticky="w",row=elt[1],column=elt[2],ipadx=40,ipady=42)
+			Label(self.FrameCalcul,text = elt[0],fg="#FFFFFF",bg=self.FrameCalcul["bg"],font=('Georgia',14,'bold')).grid(sticky="w",row=elt[1],column=elt[2],ipadx=40,ipady=30)
 if __name__ == "__main__":
     root = Tk()
     application = Calculatrice(root)
