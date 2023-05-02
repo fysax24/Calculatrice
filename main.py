@@ -17,10 +17,27 @@ class Calculatrice(object):
 		y = int((hs/2) - (h/2) )
 		self.fen.geometry("{}x{}+{}+{}".format(w,h,x,y))#1024,768
 		self.fen.resizable(False, False)
-
+		self.equation = StringVar()
+		self.expression = ""
+		
+		
+		def click(bouton):
+			if bouton == "=":
+				calcul()
+				return
+			self.expression += bouton
+			self.LabelShow.config(text = self.expression)
+		
+		def calcul():
+			try:
+				total = str(eval(self.expression))
+				self.LabelShow.config(text = total)
+			except:
+				self.LabelShow.config(text = "Erreur")
+				self.expression = ""
 		self.FrameShow = Frame(self.fen,height= 80,bg="black")
 		self.FrameShow.pack(side="top",fill="x")
-		self.LabelShow = Label(self.FrameShow,text="bonjour",fg="#FFFFFF",font=('Georgia',18,'bold'),bg="yellow")
+		self.LabelShow = Label(self.FrameShow,text=self.equation,fg="#FFFFFF",font=('Georgia',18,'bold'),bg="yellow")
 		self.LabelShow.pack(expand=1,fill="both",ipady=20)
 		
 		self.FrameCalcul =Frame(self.fen,bg="red")
@@ -37,7 +54,9 @@ class Calculatrice(object):
 					("0",3,0),(".",3,1),("/",3,2),("=",3,3),
 		)
 		for elt in buttons:
-			Label(self.FrameCalcul,text = elt[0],fg="#FFFFFF",bg=self.FrameCalcul["bg"],font=('Georgia',14,'bold')).grid(sticky="w",row=elt[1],column=elt[2],ipadx=40,ipady=30)
+			b = Label(self.FrameCalcul,text = elt[0],fg="#FFFFFF",bg=self.FrameCalcul["bg"],font=('Georgia',14,'bold'))
+			b.grid(sticky="w",row=elt[1],column=elt[2],ipadx=40,ipady=30)
+			b.bind("<Button-1>",lambda e,bouton = elt[0]:click(bouton))
 if __name__ == "__main__":
     root = Tk()
     application = Calculatrice(root)
