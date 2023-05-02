@@ -35,9 +35,13 @@ class Calculatrice(object):
 			except:
 				self.LabelShow.config(text = "Erreur")
 				self.expression = ""
+		
+		def delete():
+			self.LabelShow.config(text="")
+
 		self.FrameShow = Frame(self.fen,height= 80,bg="black")
 		self.FrameShow.pack(side="top",fill="x")
-		self.LabelShow = Label(self.FrameShow,text=self.equation,fg="#FFFFFF",font=('Georgia',18,'bold'),bg="yellow")
+		self.LabelShow = Label(self.FrameShow,text="",fg="#FFFFFF",font=('Georgia',18,'bold'),bg="yellow")
 		self.LabelShow.pack(expand=1,fill="both",ipady=20)
 		
 		self.FrameCalcul =Frame(self.fen,bg="red")
@@ -47,7 +51,7 @@ class Calculatrice(object):
 		self.FrameDel.pack(side="top",fill="x")
 		self.LabelDel = Label(self.FrameDel,text="Delete",fg="#FFFFFF",font=('Georgia',18,'bold'),bg="blue")
 		self.LabelDel.pack(expand=1,fill="both",ipady=20)
-		
+		self.LabelDeL.bind("<Button-1>",lambda e,delete())
 		buttons = (("7",0,0),("8",0,1),("9",0,2),("*",0,3),
 					("4",1,0),("5",1,1),("6",1,2),("-",1,3),
 					("1",2,0),("2",2,1),("3",2,2),("+",2,3),
